@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Form hari V</title>
+<style>
+body {
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg,#ac5efa,#fa8ada);
+  color:white;
+  overflow:hidden;
+}
+.page {
+  display:none;
+  height:100vh;
+  text-align:center;
+  padding:40px;
+}
+.page.active {
+  display:block;
+}
+button {
+  padding:12px 25px;
+  border:none;
+  border-radius:20px;
+  background:#ff9de2;
+  font-size:18px;
+  cursor:pointer;
+  margin:10px;
+}
+.nav {
+  margin-top:30px;
+}
+
+/* GALERI FOTO */
+.gallery {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.gallery img {
+  width:200px;
+  height:200px;
+  object-fit:cover;      /* biar rapi & tidak gepeng */
+  border-radius:20px;
+  margin:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* LOVE ANIMATION */
+.love {
+  position:absolute;
+  top:-20px;
+  font-size:20px;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to {transform: translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<div class="page active" id="page1">
+  <h1>💖 Teruntuk Adine 💖</h1>
+  <p>Aku bikin ini khusus buat kamuu hehehe</p>
+  <div class="nav">
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+</div>
+
+<div class="page" id="page2">
+  <h1>📸 Kenangan-kenangan kita nihh</h1>
+
+  <div class="gallery">
+    <img src="foto1.jpg.jpeg">
+    <img src="foto2.jpg.jpeg">
+    <img src="foto3.jpg.jpeg">
+  </div>
+
+  <p>Ini sih kenangan-kenangan yang ga boleh dilupainn. Makasih ya sayangg karena udah selalu ada 💜💜</p>
+  <div class="nav">
+    <button onclick="prevPage()">⬅️ Back</button>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+</div>
+
+<div class="page" id="page3">
+  <h1>💌 Love Page From Timot</h1>
+  <p>
+  Aku bersyukur banget deh bisa memiliki kamuu.<br>
+  Meskipun sekarang kita lagi LDR yaa, tapi hati aku tuh tetap merasa dekat sama kamuu.<br>
+  Aku yakin kita akan selalu bareng sampai selamanya yaa 💜💜
+  </p>
+  <div class="nav">
+    <button onclick="prevPage()">⬅️ Back</button>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+</div>
+
+<div class="page" id="page4">
+  <h1>🌹 Happy Valentine Cayaangg 🌹</h1>
+  <h2>Love you so muchh 💜❤️</h2>
+  <p>Dari aku yang selalu kangen kamuu hihi 😘</p>
+  <div class="nav">
+    <button onclick="prevPage()">⬅️ Back</button>
+  </div>
+</div>
+
+<script>
+let currentPage = 1;
+const totalPages = 4;
+
+function showPage(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page'+n).classList.add('active');
+}
+
+function nextPage(){
+  if(currentPage < totalPages){
+    currentPage++;
+    showPage(currentPage);
+  }
+}
+
+function prevPage(){
+  if(currentPage > 1){
+    currentPage--;
+    showPage(currentPage);
+  }
+}
+
+// love animation
+setInterval(()=>{
+  const love=document.createElement("div");
+  love.className="love";
+  love.innerHTML="💖";
+  love.style.left=Math.random()*100+"vw";
+  love.style.animationDuration=(2+Math.random()*3)+"s";
+  document.body.appendChild(love);
+  setTimeout(()=>love.remove(),5000);
+},300);
+</script>
+
+</body>
+</html>
